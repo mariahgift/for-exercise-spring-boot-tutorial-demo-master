@@ -52,14 +52,9 @@ class StudentControllerTest {
         given(studentService.getStudentById(existingStudentId)).willReturn(expectedStudentEntity);
 
 //        When the getStudentById request is executed
-        mockMvc.perform(MockMvcRequestBuilders.get("/student/").
-                contentType(MediaType.APPLICATION_JSON).content ("{\r\n" +
-                        "\"id\": 1, \r\n" +
-                        "\"name\": \"Aya\", \r\n" +
-                        "  \"rollNo\": 1, \r\n" +
-                        "  \"address\": \"California" +"\"\r\n" +
-                        //        Then the result should be ok
-                "}")).andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(MockMvcRequestBuilders.get("/student//{student-id}", existingStudentId)).
+                //        Then the result should be ok
+                andExpect(MockMvcResultMatchers.status().isOk());
     }
 
 }
